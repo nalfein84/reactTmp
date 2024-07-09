@@ -7,15 +7,11 @@
     }
   ],
   "products": [
-    {
-      "imgUrl": "https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.britannica.com%2Fplant%2Flettuce&psig=AOvVaw0HT6UsuHkMaoLy2-MR5Wkb&ust=1720618609358000&source=images&cd=vfe&opi=89978449&ved=0CA8QjRxqFwoTCOCy8vmJmocDFQAAAAAdAAAAABAE",
-      "name": "Lettuce",
-      "desc": "description lettuce"
-    },
-    {
-      "imgUrl": "https://www.google.com/url?sa=i&url=https%3A%2F%2Fstock.adobe.com%2Ffr%2Fsearch%2Fimages%3Fk%3Dcarrot&psig=AOvVaw3w96JZiuB2Xhlc8-DHUNv7&ust=1720618555887000&source=images&cd=vfe&opi=89978449&ved=0CA8QjRxqFwoTCMi55OKJmocDFQAAAAAdAAAAABAE",
-      "name": "Carrot",
-      "desc": "description carrot"
-    }
+    {"desc": "Fruits", "imgUrl": "$1", "id": 1, "name": "Apple"},
+    {"desc": "Fruits", "imgUrl": "$1", "id": 2, "name": "Dragonfruit"},
+    {"desc": "Fruits", "imgUrl": "$2", "id": 3, "name": "Passionfruit"},
+    {"desc": "Vegetables", "imgUrl": "$2", "id": 4, "name": "Spinach"},
+    {"desc": "Vegetables", "imgUrl": "$4", "id": 5, "name": "Pumpkin"},
+    {"desc": "Vegetables", "imgUrl": "$1", "id": 6, "name": "Peas"}
   ]
 }
