@@ -21,9 +21,6 @@ const styles = StyleSheet.create({
     }
   });
 
-
-export type IProduct = PropsWithChildren <{id:number, name: string, desc:string, imgUrl: string}>;
-
 function ProductData ( {product} : {product : Product}) : React.ReactNode {
     return (
         <View style={{flexDirection: 'row'}}>

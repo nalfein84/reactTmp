@@ -14,7 +14,7 @@ function isProduct(value : unknown): value is Product {
     }
     const object = value as Record<string, unknown>
     return (
-        typeof object.id === 'string' &&
+        typeof object.id === 'number' &&
         typeof object.name === 'string' &&
         typeof object.desc === 'string' &&
         typeof object.imgUrl === 'string' 
@@ -26,10 +26,12 @@ function isProductArray(value: unknown): value is Product[] {
 }
 
 async function getAll() : Promise<Product[]> {
-    const request = await fetch(urlBase+'/product');
+    console.log(urlBase+'/products');
+    const request = await fetch(urlBase+'/products');
     const result = await request.json();
 
     if(!isProductArray(result)){
+        console.log(result);
         throw new Error('Invalid data: result json is not an Product[]')
     }
 
@@ -37,7 +39,7 @@ async function getAll() : Promise<Product[]> {
 }
 
 async function get (id: string) : Promise<Product> {
-    const request = await fetch(urlBase+'/product/'+{id});
+    const request = await fetch(urlBase+'/products/'+{id});
     const result = await request.json();
 
     if(!isProduct(result)){
@@ -48,7 +50,7 @@ async function get (id: string) : Promise<Product> {
 }
 
 async function create (data: string) : Promise<Product> {
-    const request = await fetch(urlBase+'/product', {
+    const request = await fetch(urlBase+'/products', {
         method: 'POST',
         body: JSON.stringify({data}),
         headers: {
@@ -65,7 +67,7 @@ async function create (data: string) : Promise<Product> {
 }
 
 async function update (id : string, data: string) : Promise<Product> {
-    const request = await fetch(urlBase+'/product/'+{id}, {
+    const request = await fetch(urlBase+'/products/'+{id}, {
         method: 'PUT',
         body: JSON.stringify({data}),
         headers: {
@@ -82,14 +84,14 @@ async function update (id : string, data: string) : Promise<Product> {
 }
 
 async function remove (id: string)  : Promise<Product> {
-    const request = await fetch(urlBase+'/product/'+{id}, {method: 'DELETE'});
+    const request = await fetch(urlBase+'/products/'+{id}, {method: 'DELETE'});
     const result = await request.json();
     return result;
     
 }
 
 async function findByKey (keyType: string, keyValue:string) : Promise<Product[]> {
-    const request = await fetch(urlBase+'/product?'+keyType+"="+keyValue);
+    const request = await fetch(urlBase+'/products?'+keyType+"="+keyValue);
     const result = await request.json();
 
     if(!isProductArray(result)){
