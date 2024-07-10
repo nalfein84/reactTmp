@@ -1,5 +1,6 @@
 import React, { PropsWithChildren } from 'react';
 import { Image, StyleSheet, Text, View } from 'react-native';
+import { Product } from '../utils/api/product';
 
 const styles = StyleSheet.create({
     title: {
@@ -23,7 +24,7 @@ const styles = StyleSheet.create({
 
 export type IProduct = PropsWithChildren <{id:number, name: string, desc:string, imgUrl: string}>;
 
-function ProductData ( {product} : {product : IProduct}) : React.ReactNode {
+function ProductData ( {product} : {product : Product}) : React.ReactNode {
     return (
         <View style={{flexDirection: 'row'}}>
             <View style={{flex:1, marginTop: 8, marginLeft: 8, marginBottom: 8}}>

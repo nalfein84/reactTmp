@@ -2,6 +2,7 @@ import React from 'react';
 import ProductData from '../atoms/ProductData';
 import { Image, StyleSheet, View } from 'react-native';
 import { IProduct } from '../atoms/ProductData';
+import { Product } from '../utils/api/product';
 
 const styles = StyleSheet.create({
     sectionContainer: {
@@ -11,7 +12,7 @@ const styles = StyleSheet.create({
     }
   });
 
-function ProductRow ({productItem} : {productItem : IProduct}) : React.ReactNode {
+function ProductRow ({productItem} : {productItem : Product}) : React.ReactNode {
     return (
         <View style={styles.sectionContainer} >
             <ProductData key={productItem.id} product={productItem}/>
