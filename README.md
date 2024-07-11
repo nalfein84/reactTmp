@@ -2,6 +2,10 @@ This is a new [**React Native**](https://reactnative.dev) project, bootstrapped 
 
 # reactTmp
 projet temporaire formation React-Native
+pour le server (API Json-server):
+ - soit modifier la "const urlBase" dans les fichier présent dans le dossier "src/utils/api" (decommenter la premisere ligne et commenter al suivante)
+ - soit cloner le projet Json-server (https://github.com/typicode/json-server.git) et installer tel qu'indiquer dans le readme 
+   puis lancer le server en lui donnant le chemin vers le fichier db.json présent dans ce projet.
 
 # Getting Started
 

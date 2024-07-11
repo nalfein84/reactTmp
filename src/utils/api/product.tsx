@@ -16,7 +16,7 @@ function isProduct(value : unknown): value is Product {
     }
     const object = value as Record<string, unknown>
     return (
-        typeof object.id === 'number' &&
+        typeof object.id === 'string' &&
         typeof object.name === 'string' &&
         typeof object.desc === 'string' &&
         typeof object.imgUrl === 'string' 
@@ -54,7 +54,7 @@ async function get (id: string) : Promise<Product> {
 async function create (data: string) : Promise<Product> {
     const request = await fetch(urlBase+'/products', {
         method: 'POST',
-        body: JSON.stringify({data}),
+        body: data,
         headers: {
             'Content-type': 'application/json; charset=UTF-8',
         }

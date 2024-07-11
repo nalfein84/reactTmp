@@ -5,7 +5,7 @@ const urlBase = 'http://localhost:3000';
 
 export interface Auth {
     id: string,
-    mail: string,
+    login: string,
     password: string
 }
 
@@ -13,23 +13,30 @@ function isAuth(value : unknown): value is Auth {
     if (!value || typeof value !== 'object') {
         return false
     }
+    console.log("isAuth : "+value);
     const object = value as Record<string, unknown>
+    
+    console.log("isAuth : object.id : "+object.id+" typeof "+typeof object.id);
+    console.log("isAuth : object.login : "+object.login+" typeof "+typeof object.login);
+    console.log("isAuth : object.password : "+object.password+" typeof "+typeof object.password);
     return (
         typeof object.id === 'string' &&
-        typeof object.mail === 'string' &&
+        typeof object.login === 'string' &&
         typeof object.password === 'string'
     )
 }
 
 function isAuthArray(value: unknown): value is Auth[] {
     return Array.isArray(value) && value.every(isAuth)
-}
+} 
 
 async function getAll() : Promise<Auth[]> {
+    console.log(urlBase+'/auth');
     const request = await fetch(urlBase+'/auth');
     const result = await request.json();
 
     if(!isAuthArray(result)){
+        console.log(result);
         throw new Error('Invalid data: result json is not an Auth[]')
     }
 
@@ -50,17 +57,17 @@ async function get (id: string) : Promise<Auth> {
 async function create (data: string) : Promise<Auth> {
     const request = await fetch(urlBase+'/auth', {
         method: 'POST',
-        body: JSON.stringify({data}),
+        body: data,
         headers: {
             'Content-type': 'application/json; charset=UTF-8',
         }
     });
     const result = await request.json();
+    console.log(result);
 
     if(!isAuth(result)){
         throw new Error('Invalid data: result json is not an Auth')
     }
-
     return result;
 }
 
@@ -100,6 +107,7 @@ async function findByKey (keyType: string, keyValue:string) : Promise<Auth[]> {
 }
 
 export const auth = {
+    isAuth,
     getAll,
     get,
     create,

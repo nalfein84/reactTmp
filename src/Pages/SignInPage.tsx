@@ -1,7 +1,17 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Button, Image, StyleSheet, Text, TextInput, View } from 'react-native';
+import { auth, Auth } from '../utils/api/auth';
+
 
 const styles = StyleSheet.create ({
+    
+    inputField:{
+        alignSelf: 'center',
+        backgroundColor: "#fff", 
+        borderColor: '#000', 
+        borderWidth:1,
+        width: 300
+    },
     button:{
         backgroundColor: "#abcdef",
         borderColor: "#000", 
@@ -10,17 +20,18 @@ const styles = StyleSheet.create ({
         textAlign:'center', 
         //fontWeight:500, 
         color:"#000"
-    },
-    inputField:{
-        alignSelf: 'center',
-        backgroundColor: "#fff", 
-        borderColor: "#000", 
-        borderWidth:1,
-        width: 300
     }
+    
 });
 
 export function SignInPage({navigation}: {navigation: any}) : React.ReactNode {
+    const [AUTH, setAUTH] = useState<Auth[]>([]);
+    useEffect(()=>{ ( async () => { const au = await auth.getAll().catch((err) => console.log(err)); if (au) setAUTH(au); console.log(au) })() },[]);
+    const [login, setLogin] = useState<string>("");
+    const [password, setPassword] = useState<string>("");
+    const [variable, setvariable] = useState<boolean>(true);
+
+    const color = variable? "black" : "red";
     return (
         <View style={{flexDirection: 'column', backgroundColor: "#fedcba",borderColor: "#000", borderWidth:1, height:777}}>
             <View style={{flex:1}}></View>
@@ -30,21 +41,35 @@ export function SignInPage({navigation}: {navigation: any}) : React.ReactNode {
             <View style={{flex:1}}></View>
             <View style={{flex:1, marginHorizontal: 20,height:100}}>
                 <View>
-                    <TextInput style={styles.inputField}>Mail</TextInput>
+                    <TextInput style={{...styles.inputField, borderColor: color}} onChangeText={setLogin} accessibilityHint='Mail'></TextInput>
                     <View style={{height:20}}></View>
-                    <TextInput style={styles.inputField}>Password</TextInput>
+                    <TextInput style={styles.inputField} secureTextEntry={true} onChangeText={setPassword} accessibilityHint='Password'></TextInput>
                 </View>
             </View>
             <View style={{flex:1}}></View>
             <View style={{flex:1, flexDirection: 'row',  marginHorizontal: 10}}>
                 <View style={{flex:1}}/>
                 <View style={{flex:3}}>
-                    <Text style={styles.button}>Register</Text>
+                    <Button title='Sign Up' onPress={() => {navigation.navigate('SignUp');}}/>
                 </View>
                 <View style={{flex:2}}>
                 </View>
                 <View style={{flex:3}}>
-                    <Button title='Sign In' onPress={() => navigation.navigate('Home')}></Button>
+                    <Button title='Sign In' onPress={() => {
+                            console.log(AUTH.length);
+                        for(let i = 0; i<AUTH.length; i++){
+                            console.log(AUTH[i].login+" && "+AUTH[i].password);
+                            console.log(login+" && "+password);
+                            if(AUTH[i].login == login && AUTH[i].password == password)
+                                navigation.navigate('Home');
+                            else{
+                                styles.inputField;
+                                styles.inputField.borderWidth = 2;
+                                setvariable(false);
+                                navigation.navigate('SignIn');
+                            } 
+                        }
+                    }}/>
                 </View>
                 <View style={{flex:1}}/>
             </View>
@@ -52,12 +77,3 @@ export function SignInPage({navigation}: {navigation: any}) : React.ReactNode {
         </View>
     );
 }
-
-
-/*const auth: [
-    {
-      "id": 1,
-      "login": "no.mail@nomail.com",
-      "password": "N0Password!"
-    }
-  ]*/
