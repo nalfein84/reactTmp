@@ -1,5 +1,7 @@
 
-const urlBase = 'https://my-json-server.typicode.com/nalfein84/reactTmp';
+//const urlBase = 'https://my-json-server.typicode.com/nalfein84/reactTmp';
+
+const urlBase = 'http://localhost:3000';
 
 export interface Product {
     id:number, 

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Image, StyleSheet, Text, TextInput, View } from 'react-native';
+import { Button, Image, StyleSheet, Text, TextInput, View } from 'react-native';
 
 const styles = StyleSheet.create ({
     button:{
@@ -20,7 +20,7 @@ const styles = StyleSheet.create ({
     }
 });
 
-export function SignInPage() : React.ReactNode {
+export function SignInPage({navigation}: {navigation: any}) : React.ReactNode {
     return (
         <View style={{flexDirection: 'column', backgroundColor: "#fedcba",borderColor: "#000", borderWidth:1, height:777}}>
             <View style={{flex:1}}></View>
@@ -44,7 +44,7 @@ export function SignInPage() : React.ReactNode {
                 <View style={{flex:2}}>
                 </View>
                 <View style={{flex:3}}>
-                    <Text style={styles.button}>Sign In</Text>
+                    <Button title='Sign In' onPress={() => navigation.navigate('Home')}></Button>
                 </View>
                 <View style={{flex:1}}/>
             </View>
