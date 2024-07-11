@@ -1,7 +1,6 @@
+import { genericCRUD } from "./generic";
 
-//const urlBase = 'https://my-json-server.typicode.com/nalfein84/reactTmp';
-
-const urlBase = 'http://localhost:3000';
+const table = '/products';
 
 export interface Product {
     id:number, 
@@ -28,12 +27,9 @@ function isProductArray(value: unknown): value is Product[] {
 }
 
 async function getAll() : Promise<Product[]> {
-    console.log(urlBase+'/products');
-    const request = await fetch(urlBase+'/products');
-    const result = await request.json();
+    const result = await genericCRUD.genericGetter(genericCRUD.urlBase+table);
 
     if(!isProductArray(result)){
-        console.log(result);
         throw new Error('Invalid data: result json is not an Product[]')
     }
 
@@ -41,8 +37,7 @@ async function getAll() : Promise<Product[]> {
 }
 
 async function get (id: string) : Promise<Product> {
-    const request = await fetch(urlBase+'/products/'+{id});
-    const result = await request.json();
+    const result = await genericCRUD.genericGetter(genericCRUD.urlBase+table+'/'+id);
 
     if(!isProduct(result)){
         throw new Error('Invalid data: result json is not an Product')
@@ -52,14 +47,7 @@ async function get (id: string) : Promise<Product> {
 }
 
 async function create (data: string) : Promise<Product> {
-    const request = await fetch(urlBase+'/products', {
-        method: 'POST',
-        body: data,
-        headers: {
-            'Content-type': 'application/json; charset=UTF-8',
-        }
-    });
-    const result = await request.json();
+    const result = await genericCRUD.genericCreate(genericCRUD.urlBase+table, data);
 
     if(!isProduct(result)){
         throw new Error('Invalid data: result json is not an Product')
@@ -69,14 +57,7 @@ async function create (data: string) : Promise<Product> {
 }
 
 async function update (id : string, data: string) : Promise<Product> {
-    const request = await fetch(urlBase+'/products/'+{id}, {
-        method: 'PUT',
-        body: JSON.stringify({data}),
-        headers: {
-            'Content-type': 'application/json; charset=UTF-8',
-        }
-    });
-    const result = await request.json();
+    const result = await genericCRUD.genericUpdate(genericCRUD.urlBase+table+id, data);
 
     if(!isProduct(result)){
         throw new Error('Invalid data: result json is not an Product')
@@ -86,15 +67,17 @@ async function update (id : string, data: string) : Promise<Product> {
 }
 
 async function remove (id: string)  : Promise<Product> {
-    const request = await fetch(urlBase+'/products/'+{id}, {method: 'DELETE'});
-    const result = await request.json();
-    return result;
-    
+    const result = await genericCRUD.genericDelete(genericCRUD.urlBase+table+id);
+
+    if(!isProduct(result)){
+        throw new Error('Invalid data: result json is not an Product')
+    }
+
+    return result; 
 }
 
 async function findByKey (keyType: string, keyValue:string) : Promise<Product[]> {
-    const request = await fetch(urlBase+'/products?'+keyType+"="+keyValue);
-    const result = await request.json();
+    const result = await genericCRUD.genericGetter(genericCRUD.urlBase+table+'?'+keyType+"="+keyValue);
 
     if(!isProductArray(result)){
         throw new Error('Invalid data: result json is not an Product[]')

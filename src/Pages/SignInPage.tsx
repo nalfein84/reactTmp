@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Button, Image, StyleSheet, Text, TextInput, View } from 'react-native';
+import { Button, Image, StyleSheet, TextInput, View } from 'react-native';
 import { auth, Auth } from '../utils/api/auth';
 
 

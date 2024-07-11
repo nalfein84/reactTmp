@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { Button, StyleSheet, Text, TextInput, View } from 'react-native';
-import { auth, Auth } from '../utils/api/auth';
+import { auth } from '../utils/api/auth';
 
 
 
@@ -11,7 +11,8 @@ const styles = StyleSheet.create ({
         backgroundColor: "#fff", 
         borderColor: '#000', 
         borderWidth:1,
-        width: 300
+        width: 300,
+        height: 40
     }
 });
 
@@ -32,18 +33,23 @@ const nommeUneFonction = async ({login, pass} : {login :string, pass :string}) =
 }
 
 function confirmRegistration({login, pass, password} : {login :string, pass :string, password: string}){
+    if(login.length < 0){
+        console.log("Le login ne peut pas etre vide")
+        return false;
+    }
+
+    if(pass.length < 8){
+        console.log("Le mot de passe saisie doit faire plus de 8 caractere")
+        return false;
+    }
+
     if(!verifyCoherence({pass, password})){
         console.log("Le mot de passe saisie ne correspond pas au mot de passe de confirmation")
         return false;
     }
     
-    const result = nommeUneFonction({login, pass});
-    if(auth.isAuth(result)){
-        console.log("result is Auth");
-        console.log(result);
-    }else{
-        console.log(result);
-    }
+    nommeUneFonction({login, pass});
+    return true;
     
 }
 //onPress={() => {if (confirmRegistration({login, pass, password})) navigation.navigate('Home');}}
@@ -58,7 +64,7 @@ export function SignUpPage({navigation}: {navigation: any}){
     
     return (
         <View style={{flexDirection: "column"}}>
-                    <View style={{height:100}}><Button title='Quit' onPress={() => {confirmRegistration({login, pass, password})}}></Button></View>
+                    <View style={{height:100}}><Button title='Quit' onPress={() => {if(confirmRegistration({login, pass, password})) navigation.navigate('Home')}}></Button></View>
             <View style={{flex:1, marginHorizontal: 20,height:100, backgroundColor: "#000"}}>
                 <Text /*title='Sign Up'*/ >test</Text>
             </View>
