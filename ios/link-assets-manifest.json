@@ -1,0 +1,25 @@
+{
+  "migIndex": 1,
+  "data": [
+    {
+      "path": "src/Assets/fonts/icomoon.eot",
+      "sha1": "2ccb3821638f8763e810b007843f72e901a464cb"
+    },
+    {
+      "path": "src/Assets/fonts/icomoon.svg",
+      "sha1": "07977291a8cc857d0a7f72db19e43a1f97f2fb27"
+    },
+    {
+      "path": "src/Assets/fonts/icomoon.ttf",
+      "sha1": "7d85812b859f7fedbbe78586e8fde13b1bdb8436"
+    },
+    {
+      "path": "src/Assets/fonts/icomoon.woff",
+      "sha1": "9f1b7b1eb7a1fbbfa21f926fc6133bdffe41ff9b"
+    },
+    {
+      "path": "src/Assets/fonts/verdana.ttf",
+      "sha1": "da80da32b18cf7f7feb663715fcb20b993ef2a9b"
+    }
+  ]
+}

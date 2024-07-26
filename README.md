@@ -1,12 +1,5 @@
 This is a new [**React Native**](https://reactnative.dev) project, bootstrapped using [`@react-native-community/cli`](https://github.com/react-native-community/cli).
 
-# reactTmp
-projet temporaire formation React-Native
-pour le server (API Json-server):
- - soit modifier la "const urlBase" dans les fichier présent dans le dossier "src/utils/api" (decommenter la premisere ligne et commenter al suivante)
- - soit cloner le projet Json-server (https://github.com/typicode/json-server.git) et installer tel qu'indiquer dans le readme 
-   puis lancer le server en lui donnant le chemin vers le fichier db.json présent dans ce projet.
-
 # Getting Started
 
 >**Note**: Make sure you have completed the [React Native - Environment Setup](https://reactnative.dev/docs/environment-setup) instructions till "Creating a new application" step, before proceeding.
@@ -84,4 +77,3 @@ To learn more about React Native, take a look at the following resources:
 - [Learn the Basics](https://reactnative.dev/docs/getting-started) - a **guided tour** of the React Native **basics**.
 - [Blog](https://reactnative.dev/blog) - read the latest official React Native **Blog** posts.
 - [`@facebook/react-native`](https://github.com/facebook/react-native) - the Open Source; GitHub **repository** for React Native.
-

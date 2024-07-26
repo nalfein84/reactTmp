@@ -1,0 +1,4 @@
+Le dossier compréssé est le serveur local pour les connexion API
+La BDD est le fichier db.json contenue a l'interieur
+
+Il faut donc le dézippé et lancé le serveur local comme indiqué dans le fichier Readme.md ce trouvant a l'interieur.
